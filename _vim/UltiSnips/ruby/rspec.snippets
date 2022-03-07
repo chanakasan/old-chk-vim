@@ -1,0 +1,78 @@
+snippet des
+describe $0 do
+end
+endsnippet
+
+
+
+snippet context
+context "${1:when something}" do
+	${0:${VISUAL:# TODO}}
+end
+endsnippet
+
+
+
+snippet it
+it "${1:example}" do$0
+end
+endsnippet
+
+
+
+snippet modelspec
+require "rails_helper"
+
+RSpec.describe $0, type: :model do
+end
+endsnippet
+
+
+snippet modelspec
+require "rails_helper"
+
+RSpec.describe $1, type: :service do
+  subject { $1 }
+  
+  it "#call" do
+		$0
+  end
+end
+endsnippet
+
+
+snippet featurespec
+require "rails_helper"
+
+RSpec.feature "${1:New}" do
+  # As a user
+  # I should be able to use '$1' feature
+end
+endsnippet
+
+
+
+snippet scena
+scenario "${1:example}" do
+$2
+end$0
+endsnippet
+
+
+
+snippet spechelper
+module `!p
+filename = re.match(r'.*(?=\.)', fn).group()
+lower_camel_case = re.sub('_.', lambda x: x.group()[1].upper(), filename)
+snip.rv = lower_camel_case[0].upper()+lower_camel_case[1:]
+`$0
+end
+
+RSpec.configure do |config|
+	config.include `!p
+filename = re.match(r'.*(?=\.)', fn).group()
+lower_camel_case = re.sub('_.', lambda x: x.group()[1].upper(), filename)
+snip.rv = lower_camel_case[0].upper()+lower_camel_case[1:]
+`
+end
+endsnippet

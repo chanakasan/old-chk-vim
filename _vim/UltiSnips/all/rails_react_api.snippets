@@ -1,0 +1,39 @@
+snippet rr_api_crud
+import axios from 'axios'
+
+import snakeToCamelCase from '../lib/snake-to-camel'
+import camelToSnakeCase from '../lib/camel-to-snake'
+import { BASE_URL } from './config'
+
+export function fetchAll__A__s() {
+  return axios
+    .get(\`${BASE_URL}/__a__s.json\`)
+    .then(res => snakeToCamelCase(res.data))
+}
+
+export function create__A__(params) {
+  return axios
+    .post(
+      \`${BASE_URL}/__a__s.json\`,
+      camelToSnakeCase({
+      __a__s: params
+      })
+    )
+    .then(res => snakeToCamelCase(res.data))
+}
+
+export function update__A__(params) {
+  return axios
+    .put(
+      \`${BASE_URL}/__a__s/${params.id}.json\`,
+      camelToSnakeCase({
+        $1: params
+      })
+    )
+    .then(res => snakeToCamelCase(res.data))
+}
+
+export function destroy__A__(id) {
+  return axios.delete(\`${BASE_URL}/__a__s/${id}.json\`)
+}
+endsnippet

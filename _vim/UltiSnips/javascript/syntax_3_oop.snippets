@@ -1,0 +1,11 @@
+global !p
+from snippet_helpers import *
+endglobal
+
+snippet class
+class `!p
+class_name = get_class_name(re, snip.basename)
+snip.rv = class_name`$1 {
+	$2
+}
+endsnippet

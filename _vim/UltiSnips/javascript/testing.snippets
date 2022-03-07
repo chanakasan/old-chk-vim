@@ -1,0 +1,81 @@
+snippet des
+describe('$1', function() {
+	$0
+})
+endsnippet
+
+snippet it
+it('$1', function() {
+	$0
+})
+endsnippet
+
+snippet bef
+beforeEach(function() {
+	$0
+})
+endsnippet
+
+snippet aft
+afterEach(function() {
+	$0
+})
+endsnippet
+
+snippet ex
+expect($1)$0
+endsnippet
+
+snippet exeq
+expect($1).toEqual($2)
+endsnippet
+
+snippet immoxios
+import moxios from 'moxios'
+endsnippet
+
+snippet moxioshooks
+beforeEach(function () {
+	moxios.install()
+})
+
+afterEach(function () {
+	moxios.uninstall()
+})
+endsnippet
+
+snippet moxiosstub
+moxios.stubRequest($1, {
+	status: 200,
+	response: { data: 'hello' }
+})
+endsnippet
+
+
+
+snippet webdriverTest
+var expect = require('chai').expect
+var I = null
+
+describe('FEATURE', function () {
+	this.timeout(10000)
+
+	beforeEach(function() {
+		I = require('./support/web_user_helper')('http://localhost:3000')
+	})
+
+	afterEach(function(done) {
+		I.driver.quit().then(() => { done() })
+	})
+
+	//it('SCENARIO', function () {
+	//  I.visit('/')
+	//  I.shouldSee('something')
+	//  I.find('css', '.someBtn').click()
+	//  return I.shouldSee('success')
+	//})
+})
+endsnippet
+
+
+

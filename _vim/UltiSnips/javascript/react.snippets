@@ -1,0 +1,45 @@
+snippet react_dom_render
+ReactDOM.render($1, document.getElementById('$2'))
+endsnippet
+
+snippet react_propt
+$1.propTypes = {
+	$2: $3,
+}
+endsnippet
+
+snippet react_prop
+React.PropTypes
+endsnippet
+
+snippet react_var_props
+const { $0 } = this.props
+endsnippet
+
+snippet react_var_state
+const { $0 } = this.state
+endsnippet
+
+snippet react_setSt
+this.setState({ $1 })
+endsnippet
+
+snippet react_setS
+set$1 = (${1/\w+/\l$0/g}) => this.setState({ ${1/\w+/\l$0/g} })
+endsnippet
+
+snippet react_useS
+const [$1, set${1/\w+/\u$0/g}] = useState($2)
+endsnippet
+
+snippet react_didmount
+componentDidMount() {
+	$0
+}
+endsnippet
+
+snippet react_actions_group
+export const ${1:item}${2:Load}Pending = createAction('$1/${2/\w+/\l$0/g}/pending')
+export const $1$2Success = createAction('$1/${2/\w+/\l$0/g}/success')
+export const $1$2Error = createAction('$1/${2/\w+/\l$0/g}/error')
+endsnippet

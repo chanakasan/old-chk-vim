@@ -1,0 +1,20 @@
+snippet tpl_react_epic
+import { combineEpics, ofType } from 'redux-observable'
+import { EMPTY } from 'rxjs'
+import { map, mergeMap, tap, catchError } from 'rxjs/operators'
+
+import * as myResourceApi from 'src/api/my-resource'
+import {
+  __myResourceLoadPending,
+  __myResourceLoadSuccess,
+  __myResourceLoadError,
+} from 'src/reducers/my-resource'
+
+const loadMyResource = action$ =>
+  action$.pipe(
+    ofType(__myResourceLoadPending().type),
+    mergeMap(() =>
+      myResourceApi.fetchRecordsList().pipe(map(data => __myResourceLoadSuccess(data)))
+    )
+  )
+endsnippet

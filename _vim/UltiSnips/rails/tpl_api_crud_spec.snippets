@@ -1,0 +1,160 @@
+snippet tpl_rails_api_crud_spec
+require 'rails_helper'
+
+RSpec.describe "__r1__ API", type: :request do
+  before do
+    test_account = create_test_company_and_login
+    host! "#{test_account.subdomain}.#{ENV['DEPLOYED_DOMAIN']}"
+  end
+
+  def endpoint_url
+    "/api/__r2__s"
+  end
+
+  def endpoint_url_with_id(id)
+    "/api/__r2__s/#{id}"
+  end
+
+  context "list" do
+    it 'returns the list of all records' do
+      create_record_1
+      get endpoint_url
+
+      result = json(response.body)
+      expect(response.status).to eq(200)
+      #> assert returned data
+      expect(result[:items].count).to eq(1)
+      expect(result[:items].first[:__attr1__]).to eq('__attr1_value__')
+    end
+
+    it "returns an empty array if no records are found" do
+      get endpoint_url
+
+      result = json(response.body)
+      expect(response.status).to eq(200)
+      expect(result[:items]).to eq([])
+    end
+
+    it 'returns paginated results' do
+      create_50_records
+      get endpoint_url + "?page=2"
+
+      result = json(response.body)
+      expect(response.status).to eq(200)
+      #> assert returned data
+      expect(result[:items].count).to eq(20)
+      expect(result[:meta][:total_count]).to eq(50)
+      expect(result[:meta][:current_page]).to eq(2)
+      expect(result[:meta][:total_pages]).to eq(2)
+    end
+  end
+
+  context "get" do
+    it 'returns a record by id' do
+      record = create_record_1
+      get endpoint_url_with_id(record.id)
+
+      result = json(response.body)
+      expect(response.status).to eq(200)
+      #> assert returned data
+      expect(result[:__attr1__]).to eq('__attr1_value__')
+    end
+
+    it "returns 404 response if record not found" do
+      get endpoint_url_with_id(123)
+
+      expect(response.status).to eq(404)
+    end
+  end
+
+  context "insert" do
+    it "returns 201 response if successful" do
+      #> set params for the create request
+      record_params = {
+        #> todo
+				__attr1__: __attr1_value__,
+      }
+
+      post endpoint_url, params: { __r2__: record_params }
+
+      result = json(response.body)
+      expect(response.status).to eq(201)
+      expect(result[:id]).to_not be_nil
+      expect(result[:__attr1__]).to eq('__attr1_value__')
+    end
+
+    it "returns 422 response if failed to create" do
+      #> set some invalid data for the request
+      invalid_record_params = {
+        #> todo
+				__attr1__: nil,
+      }
+      post endpoint_url, params: { __r2__: invalid_record_params }
+
+      result = json(response.body)
+      expect(result).to_not be_empty
+      expect(response.status).to eq(422)
+    end
+  end
+
+  context "patch" do
+    it "returns 200 response if successful" do
+      record = create_record_1
+      #> set params for the update request
+      record_params = {
+        __attr1__: '__attr1_value__Edited',
+      }
+      patch endpoint_url_with_id(record.id), params: { __r2__: record_params }
+
+      expect(response.status).to eq(200)
+      #> assert updated data
+      record.reload
+      expect(record.__attr1__).to eq('__attr1_value__Edited')
+    end
+
+    it "returns 422 response if failed to update" do
+      record = create_record_1
+      #> set some invalid data for the request
+      invalid_record_params = {
+        #> todo
+				__attr1__: nil,
+      }
+      patch endpoint_url_with_id(record.id), params: { __r2__: invalid_record_params }
+
+      expect(response.status).to eq(422)
+    end
+
+    it "returns 404 response if record not found" do
+      patch endpoint_url_with_id(123), params: { __r2__: {} }
+      expect(response.status).to eq(404)
+    end
+  end
+
+  context "delete" do
+    it "returns 204 response if successful"  do
+      record = create_record_1
+      delete endpoint_url_with_id(record.id)
+
+      expect(response.status).to eq(204)
+      all_records = __r1__.all
+      expect(all_records.count).to eq(0)
+    end
+
+    it "returns 404 response if record not found" do
+      delete endpoint_url_with_id(123)
+      expect(response.status).to eq(404)
+    end
+  end
+
+  protected
+  def create_record_1
+    __r1__.create!(
+      __attr1__: '__attr1_value__',
+    )
+  end
+
+  def create_50_records
+    50.times { |i| __r1__.create!(__attr1__: "__attr1_value__#{i}") }
+  end
+end
+endsnippet

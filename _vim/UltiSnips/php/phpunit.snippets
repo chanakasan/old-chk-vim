@@ -1,0 +1,22 @@
+snippet phpunit_unit
+<?php
+
+use PHPUnit\Framework\TestCase;
+
+class ${1:ExampleUnit}Test extends TestCase
+{
+  protected function setup(): void
+  {
+  }
+
+  function test_one()
+  {
+    $car = new \StdClass;
+    $car->model = 'Volkswagen Beetle';
+    $car->engine = 1100;
+    assertEquals('Volkswagen Beetle', $car->model);
+    assertEquals(1100, $car->engine);
+    assertFalse(isset($car->year));
+  }
+}
+endsnippet

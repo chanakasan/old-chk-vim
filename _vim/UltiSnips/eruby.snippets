@@ -1,0 +1,66 @@
+extends html
+
+
+
+snippet %end "erb end expr" w
+<% end %>
+endsnippet
+
+snippet "%%" "erb echo" r
+<%= $1 %>$0
+endsnippet
+
+snippet "^[^%]*%" "erb expr" r
+<% $1 %>$0
+endsnippet
+
+
+
+# translations
+snippet tr
+t('${1:my_key}')
+endsnippet
+
+snippet tr=
+<%= t('${1:my_key}') %>
+endsnippet
+# end translations
+
+
+
+# forms
+snippet f_for "form for"
+<%= form_for $1 do |f| %>
+	$2
+<% end %>$0
+endsnippet
+
+snippet ffield
+<%= f.${1:text}_field :${2:field_name} %>$0
+endsnippet
+# end forms
+
+
+
+# simple form
+snippet sf_for "simple form for"
+<%= simple_form_for $1 do |f| %>
+$2
+<% end %>$0
+endsnippet
+
+snippet finput
+<%= f.input $1 %>
+endsnippet
+
+snippet finputg
+<%= f.label $1 %>
+<%= f.input_field $1 %>
+<%= f.error $1 %>
+endsnippet
+# end simple form
+
+
+snippet render_metronic
+<%= render 'metronic/$1' %>
+endsnippet

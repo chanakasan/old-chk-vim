@@ -1,0 +1,48 @@
+snippet tpl_rails_api_crud_ctrl
+class Api::__r1__sController < Api::BaseAppController
+  def index
+    send_success(__r1__.all)
+  end
+
+  def show
+    record = __r1__.find(params[:id])
+    send_success(record)
+  rescue ActiveRecord::RecordNotFound
+    send_not_found
+  end
+
+  def create
+    record = __r1__.new(record_params)
+    record.save!
+    send_success(record, status: 201)
+  rescue ActiveRecord::RecordInvalid
+    send_error(record.errors)
+  end
+
+  def update
+    record = __r1__.find(params[:id])
+    record.update!(record_params)
+    send_success(record)
+  rescue ActiveRecord::RecordInvalid
+    send_error(record.errors)
+  rescue ActiveRecord::RecordNotFound
+    send_not_found
+  end
+
+  def destroy
+    record = __r1__.find(params[:id])
+    record.destroy
+    send_no_content
+  rescue ActiveRecord::RecordNotFound
+    send_not_found
+  end
+
+  protected
+  def record_params
+    params.require(:__r2__).permit(
+      #> todo
+    )
+  end
+end
+endsnippet
+

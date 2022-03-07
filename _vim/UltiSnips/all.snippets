@@ -1,0 +1,43 @@
+global !p
+def show_match_1():
+	snip.rv = match.group(1)
+endglobal
+
+
+
+snippet #!
+#!/usr/bin/env $1
+endsnippet
+
+snippet date
+`date +%Y-%m-%d`
+endsnippet
+
+snippet filename
+`!p
+filename = re.match(r'.*(?=\.)', fn).group()
+snip.rv = filename
+`
+endsnippet
+
+snippet to_titlecase "example transformation"
+${1:a text}
+${1/\w+\s*/\u$0/g}
+endsnippet
+
+snippet hblock
+#: ${1:Heading} = {{{
+
+$2
+
+# }}}
+endsnippet
+
+snippet line
+#---------------------------------------------------------------------------
+endsnippet
+
+
+snippet time "" w
+2020-06-0$1,09:00:00,$2:$3:00,
+endsnippet

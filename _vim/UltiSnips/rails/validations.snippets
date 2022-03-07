@@ -1,0 +1,39 @@
+snippet vao "validates_acceptance_of"
+validates_acceptance_of :${1:terms}${2:${3:, :accept => "${4:1}"}${5:, :message => "${6:You must accept the terms of service}"}}
+endsnippet
+
+snippet va "validates_associated (va)"
+validates_associated :${1:attribute}${2:, :on => :${3:create}}
+endsnippet
+
+snippet vc "validates_confirmation_of (vc)"
+validates_confirmation_of :${1:attribute}${2:, :on => :${3:create}, :message => "${4:should match confirmation}"}
+endsnippet
+
+snippet ve "validates_exclusion_of (ve)"
+validates_exclusion_of :${1:attribute}${2:, :in => ${3:%w( ${4:mov avi} )}, :on => :${5:create}, :message => "${6:extension %s is not allowed}"}
+endsnippet
+
+snippet vf "validates_format_of"
+validates_format_of :${1:attribute}, :with => /${2:^[${3:\w\d}]+\$}/${4:, :on => :${5:create}, :message => "${6:is invalid}"}
+endsnippet
+
+snippet vi "validates_inclusion_of"
+validates_inclusion_of :${1:attribute}${2:, :in => ${3:%w( ${4:mov avi} )}, :on => :${5:create}, :message => "${6:extension %s is not included in the list}"}
+endsnippet
+
+snippet vl "validates_length_of (vl)"
+validates_length_of :${1:attribute}, :within => ${2:3..20}${3:, :on => :${4:create}, :message => "${5:must be present}"}
+endsnippet
+
+snippet vn "validates_numericality_of"
+validates_numericality_of :${1:attribute}${2:, :on => :${3:create}, :message => "${4:is not a number}"}
+endsnippet
+
+snippet vp "validates_presence_of (vp)"
+validates_presence_of :${1:attribute}${2:, :on => :${3:create}, :message => "${4:can't be blank}"}
+endsnippet
+
+snippet vu "validates_uniqueness_of (vu)"
+validates_uniqueness_of :${1:attribute}${2:, :on => :${3:create}, :message => "${4:must be unique}"}
+endsnippet

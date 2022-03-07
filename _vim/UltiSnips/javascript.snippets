@@ -1,0 +1,29 @@
+global !p
+from snippet_helpers import *
+endglobal
+
+snippet class_name
+`!p snip.rv = get_class_name(re, snip.basename)`
+endsnippet
+
+snippet "%%" "" r
+${${1:${VISUAL:var}}}
+endsnippet
+
+# functions = {
+snippet f "" w
+($1) => $2
+endsnippet
+
+snippet fx
+const $1 = ($2) => $3
+endsnippet
+
+snippet ff "" w
+($1) => ($2)
+endsnippet
+
+snippet fn "" w
+($1) => {$2}
+endsnippet
+# }

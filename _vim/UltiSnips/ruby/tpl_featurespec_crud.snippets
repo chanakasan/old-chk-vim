@@ -1,0 +1,34 @@
+snippet tpl_featurespec_crud
+require 'rails_helper'
+
+RSpec.feature '__PageName__ Page', :js do
+  # As a user
+  # I should be able to use __PageName__ Page
+
+  background do
+    create_test_company_and_login
+  end
+
+  scenario 'creates a record, edits it and then deletes it' do
+    visit_app_path '/app/__PagePath__'
+    should_see 'No __recordTypes__ found'
+
+    # create
+    find('.new-record-btn').click
+    fill_in '__attr__', with: '__value__'
+    click_button "Save"
+    should_see 'Showing 1 to 1 of 1 __recordTypes__'
+
+    # edit
+    find('.edit-record-btn').click
+    fill_in '__attr__', with: '__valueEdited__'
+    click_button "Save"
+    should_see '__valueEdited__'
+
+    # delete
+    find('.delete-record-btn').click
+    accept_js_confirm_dialog
+    should_see 'No __recordTypes__ found'
+  end
+end
+endsnippet

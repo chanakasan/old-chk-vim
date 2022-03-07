@@ -1,0 +1,34 @@
+snippet rr_mainbundle
+import React from 'react'
+import ReactDOM from 'react-dom'
+import Root from '../components/root'
+
+document.addEventListener('DOMContentLoaded', () => {
+  ReactDOM.render(
+    <Root />,
+    document.getElementById('root'),
+  )
+})
+endsnippet
+
+snippet rr_layout_01
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>$1</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= javascript_pack_tag 'main-bundle' %>
+
+    <style>
+      body {
+        background: green;
+      }
+    </style>
+  </head>
+  <body>
+    <%= yield %>
+  </body>
+</html>
+endsnippet

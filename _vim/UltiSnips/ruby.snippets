@@ -1,0 +1,95 @@
+extends rails
+
+
+snippet gemfile
+source 'https://rubygems.org'
+endsnippet
+
+
+
+# debugging
+snippet l
+puts "[INFO] ${1:${VISUAL:var}}"
+endsnippet
+
+snippet d
+puts "[DEBUG] ${1:${VISUAL:var}} = #{$1.inspect}"
+endsnippet
+
+snippet rrl
+Rails.logger.info "[INFO] ${1:${VISUAL:var}}"
+endsnippet
+
+snippet rrd
+Rails.logger.debug "[DEBUG] ${1:${VISUAL:var}} = #{$1.inspect}"
+endsnippet
+
+snippet pry
+require "pry"; binding.pry
+endsnippet
+# end debugging
+
+
+
+# definitions
+snippet module
+module `!p
+filename = re.match(r'.*(?=\.)', fn).group()
+lower_camel_case = re.sub('_.', lambda x: x.group()[1].upper(), filename)
+snip.rv = lower_camel_case[0].upper()+lower_camel_case[1:]
+`$0
+end
+endsnippet
+
+
+
+snippet class
+class `!p
+filename = re.match(r'.*(?=\.)', fn).group()
+lower_camel_case = re.sub('_.', lambda x: x.group()[1].upper(), filename)
+snip.rv = lower_camel_case[0].upper()+lower_camel_case[1:]
+`$0
+end
+endsnippet
+
+
+
+snippet def
+def ${1:new_method}
+end
+endsnippet
+
+snippet setr
+def ${1:attribute}=($1)
+	@$1 = $1
+end
+endsnippet
+
+snippet getr
+def ${1:attribute}
+	@$1
+end
+endsnippet
+# end definitions
+
+
+
+# require
+snippet req
+require '$0'
+endsnippet
+
+snippet reqrel
+require_relative './$0'
+endsnippet
+
+snippet reqdep
+require_dependency './$0'
+endsnippet
+# end require
+
+
+
+snippet "%%" "echo" r
+#{${1:${VISUAL:var}}}$0
+endsnippet

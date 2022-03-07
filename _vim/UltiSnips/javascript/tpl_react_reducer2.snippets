@@ -1,0 +1,27 @@
+snippet tpl_react_reducer2
+import { createAction, handleActions } from 'redux-actions'
+
+export const myResourceLoadPending = createAction('myResource/load/pending')
+export const myResourceLoadSuccess = createAction('myResource/load/success')
+export const myResourceLoadError = createAction('myResource/load/error')
+
+const initialState = {
+  pending: false,
+  data: {},
+}
+
+export default handleActions(
+  {
+    [myResourceLoadPending]: state => ({
+      ...state,
+      pending: true
+    }),
+    [myResourceLoadSuccess]: (state, action) => ({
+      ...state,
+      pending: false,
+      data: action.payload
+    }),
+  },
+  initialState
+)
+endsnippet

@@ -1,0 +1,19 @@
+snippet tpl_react_reducer
+const initialState = {
+  msg: "test"
+}
+
+export default (state=initialState, action) => {
+	switch (action.type) {
+		case '$1': {
+			return Object.assign({}, state, {
+				$2
+			})
+		}
+
+		default:
+			return state;
+	}
+}
+endsnippet
+

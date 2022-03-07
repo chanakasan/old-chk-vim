@@ -1,0 +1,20 @@
+global !p
+def show_match_1():
+	snip.rv = match.group(1)
+endglobal
+
+snippet > "html tag" w
+<${1:${VISUAL:div}}>$2</$1>
+endsnippet
+
+snippet "(\w+)>" "html tag" r
+<`!p show_match_1()`>$1</`!p show_match_1()`>
+endsnippet
+
+snippet /> "empty html tag" w
+<${1:${VISUAL:div}} />
+endsnippet
+
+snippet "(\w+)\/>" "empty html tag" r
+<`!p show_match_1()` />
+endsnippet

@@ -1,0 +1,156 @@
+snippet debugger
+eval(\Psy\sh()); # DEBUGGER
+endsnippet
+
+# Getter/setter {{{
+snippet prop
+public function get${1/\w+/\u$0/g}() {
+  return $this->$1;
+}
+
+public function set${1/\w+/\u$0/g}($$1) {
+  return $this->$1 = $$1;
+}
+
+endsnippet
+
+snippet gett
+public function get$1() {
+  return $this->${1/\w+/\l$0/g};
+}
+endsnippet
+
+snippet sett
+public function set${1/\w+/\u$0/g}($$1) {
+  return $this->$1 = $$1;
+}
+endsnippet
+# }}}
+
+# Debug {{{
+snippet l
+echo '[INFO] \$1', "\n";
+endsnippet
+
+snippet d
+echo '[DEBUG] $$1 = ', $$1, "\n";
+endsnippet
+
+snippet dd
+echo '[DEBUG] $$1 = ';
+die(var_dump($$1));
+
+endsnippet
+
+snippet dclass
+die(var_dump(get_class($1)));
+endsnippet
+# }}}
+
+# Functions {{{
+snippet construct
+public function __construct($1)
+{$0
+}
+endsnippet
+
+snippet f
+function ${1:name}($2)
+{$0
+}
+endsnippet
+
+snippet pubsf
+public static function $1($2)
+{$0
+}
+endsnippet
+
+snippet pubf
+public function $1($2)
+{$0
+}
+endsnippet
+
+snippet prif
+private function $1($2)
+{$0
+}
+endsnippet
+
+snippet prof
+protected function $1($2)
+{$0
+}
+endsnippet
+# }}}
+
+# Definitions {{{
+snippet trait
+<?php
+
+trait `!p
+snip.rv = re.match(r'.*(?=\.)', fn).group()
+`
+{$0
+}
+endsnippet
+
+
+
+snippet class
+<?php
+
+class `!p
+snip.rv = re.match(r'.*(?=\.)', fn).group()
+`
+{$0
+}
+endsnippet
+
+
+
+snippet ns "" b
+  namespace `!p
+abspath = os.path.abspath(path)
+  m = re.search(r'[A-Z].+(?=/)', abspath)
+  if m:
+  snip.rv = m.group().replace('/', '\\')
+  `;
+  endsnippet
+
+
+
+  snippet classns "class with namespace" b
+  <?php
+
+  namespace `!p
+abspath = os.path.abspath(path)
+  m = re.search(r'[A-Z].+(?=/)', abspath)
+  if m:
+  snip.rv = m.group().replace('/', '\\')
+  `;
+
+  class `!p
+  snip.rv = re.match(r'.*(?=\.)', fn).group()
+  `
+{$0
+}
+endsnippet
+# }}}
+
+# Misc {{{
+snippet if
+if (${1:$condition}) {
+  ${2:// do stuff}
+}$0
+endsnippet
+
+snippet this
+\$this->$0
+endsnippet
+
+snippet req
+require$0 "$1.php";
+endsnippet
+# }}}

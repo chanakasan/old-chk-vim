@@ -1,0 +1,16 @@
+snippet tpl_react_class_com
+import React from 'react'
+
+MyComponent extends React.Component {
+	render() {
+		const { className } = this.props
+		return (
+			<div className={className}>
+				This is MyComponent.
+			</div>
+		)
+	}
+}
+
+export default MyComponent
+endsnippet

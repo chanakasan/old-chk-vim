@@ -1,0 +1,15 @@
+snippet rails_disable_generators
+# disable generators
+config.generators do |g|
+  g.test_framework false, :fixture => false
+  g.assets false
+  g.helper false
+  g.javascripts false
+  g.stylesheets false
+end
+endsnippet
+
+snippet rails_mailcatcher_config
+config.action_mailer.delivery_method = :smtp
+config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
+endsnippet

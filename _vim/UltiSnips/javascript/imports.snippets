@@ -1,0 +1,48 @@
+# predefined imports {
+global !p
+JS_IMPORTS = """
+enz,import { shallow } from "enzyme"
+pt,import PropTypes from "prop-types"
+r,import React from "react"
+rdom,import ReactDOM from "react-dom"
+rr,import { connect } from "react-redux"
+rrdom,import { BrowserRouter } from "react-router-dom"
+sty,import styled from "styled-components"
+styV,import styled from "vue-styled-components"
+"""
+
+def parsed_imports():
+	imports = {}
+	lines = JS_IMPORTS.split('\n')
+
+	for line in lines:
+		arr = line.split(',')
+		if len(arr) == 2:
+			imports[arr[0]] = arr[1]
+
+	return imports
+
+def find_js_import(key):
+	return parsed_imports().get(key, 'import ')
+endglobal
+
+priority -10
+snippet "^im_(\w+)" "js imports regex" r
+`!p snip.rv = find_js_import(match.group(1))`
+endsnippet
+# }
+
+# regular import {
+priority 100
+snippet im
+import $1 from '$2'
+endsnippet
+
+snippet im{
+import { $1 } from '$2'
+endsnippet
+
+snippet im_fa
+import { $1 } from '@fortawesome/free-solid-svg-icons/$1'
+endsnippet
+# }

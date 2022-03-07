@@ -1,0 +1,15 @@
+snippet tpl_mux
+#!/usr/bin/env bash
+
+set -e
+
+main() {
+  local session=`mux-session-name`
+  tmux new-session -s $session -n "main" -d
+  tmux new-window -t $session:2 -n "console"
+  tmux select-window -t $session:1
+  tmux attach -t $session
+}
+
+main
+endsnippet

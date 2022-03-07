@@ -1,0 +1,40 @@
+snippet if
+if ($1) {
+  // doSomething
+}
+endsnippet
+
+snippet this
+\$this->$0
+endsnippet
+
+snippet req
+require "$1.php";
+endsnippet
+
+snippet switch
+switch ($1) {
+	case 'one':
+		// doSomething;
+		break;
+	case 'two':
+		// doSomethingElse;
+		break;
+	default:
+		// doDefault;
+}
+endsnippet
+
+snippet foreach
+foreach ($1) {
+	$2
+}
+endsnippet
+
+snippet try
+try {
+	//...$1
+} catch (\Exception $e) {
+	//...$2
+}
+endsnippet

@@ -1,0 +1,19 @@
+snippet try
+try {
+	$1
+} catch (error) {
+	console.log("error =", error)
+}
+endsnippet
+
+snippet catch "" w
+catch (error) {
+	console.log("error =", error)
+	$1
+}
+endsnippet
+
+snippet throw
+throw new Error($1)
+endsnippet
+

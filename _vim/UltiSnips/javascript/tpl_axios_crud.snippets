@@ -1,0 +1,32 @@
+snippet tpl_axios_crud
+export function fetchList(dispatch, queryParams) {
+  return axios.get('_apiPath_?' + qs.stringify(queryParams)).then((response) => {
+    dispatch({ type: `${_Namespace_}/LOAD_LIST`, payload: response.data })
+  })
+}
+
+export function fetchRecord(dispatch, id) {
+  return axios.get(`_apiPath_/${id}`).then((response) => {
+    dispatch({ type: `${_Namespace_}/LOAD_RECORD_TO_EDIT`, payload: response.data })
+  })
+}
+
+export function createRecord(dispatch, params) {
+  return axios.post('_apiPath_', params).then((response) => {
+    dispatch({ type: `${_Namespace_}/LOAD_RECORD_TO_EDIT`, payload: response.data })
+  })
+}
+
+export function updateRecord(dispatch, params) {
+  return axios.patch(`_apiPath_/${params.id}`, params).then((response) => {
+    dispatch({ type: `${_Namespace_}/LOAD_RECORD_TO_EDIT`, payload: response.data })
+  })
+}
+
+export function destroyRecord(dispatch, record) {
+  return axios.delete(`_apiPath_/${record.id}`).then(() => {
+    dispatch({ type: `${_Namespace_}/REMOVE_RECORD`, payload: record })
+  })
+}
+endsnippet
+

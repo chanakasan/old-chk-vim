@@ -1,0 +1,48 @@
+snippet sandbox
+import Browser
+import Html exposing (Html, button, div, h1, text)
+import Html.Events exposing (onClick)
+
+
+main =
+    Browser.sandbox { init = initModel, update = updateModel, view = renderView }
+
+
+
+-- MODEL
+
+
+type alias Model =
+    String
+
+
+initModel : Model
+initModel =
+    "Hello, World"
+
+
+
+-- UPDATE
+
+
+type Msg
+    = SomeMsg
+
+
+updateModel : Msg -> Model -> Model
+updateModel msg model =
+    case msg of
+        SomeMsg ->
+            model ++ "!"
+
+
+
+-- VIEW
+
+
+renderView : Model -> Html Msg
+renderView model =
+    h1 [ onClick SomeMsg ]
+        [ text model ]
+endsnippet
+

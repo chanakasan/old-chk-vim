@@ -1,0 +1,28 @@
+snippet systemtest_doc
+# Helpers:
+# visit <path>
+# fill_in <id|name>, with: <text>
+# assert_text  <text>
+# find("input[name="commit"]").click
+endsnippet
+
+snippet systemtest
+require "application_system_test_case"
+
+class MyTest < ApplicationSystemTestCase
+  include ActionView::Helpers::TranslationHelper
+
+  setup do
+    Setting.maintenance_mode = false
+    @subdomain = OriaConfig.get(:portal_subdomain)
+  end
+
+  teardown do
+    Setting.maintenance_mode = false
+  end
+
+  test "can login successfully" do
+    visit "/my_path"
+    assert_text "My Text"
+  end
+endsnippet

@@ -1,0 +1,26 @@
+snippet tpl_carrierwave_spec_helper
+def __clear_uploads
+	FileUtils.rm_rf(Dir["#{Rails.root}/spec/uploads/*"])
+end
+
+def __configure_uploads_for_tests(klass)
+	klass.storage :file
+	klass.class_eval do
+		# set uploads base dir
+		def root
+			"spec"
+		end
+	end
+end
+
+CarrierWave::Uploader::Base.descendants.each do |klass|
+	next if klass.anonymous?
+	__configure_uploads_for_tests(klass)
+end
+
+RSpec.configure do |config|
+	config.before(:all) do
+		__clear_uploads
+	end
+end
+endsnippet

@@ -1,0 +1,25 @@
+snippet docblock
+" bufman.vim - A buffer manager
+" Maintainer:   Chk
+" Version:      1.0
+endsnippet
+
+snippet heading
+" ##########################################
+" # ${1:Heading}
+" ##########################################
+endsnippet
+
+snippet augroup_mod
+augroup mod_$1
+  autocmd!
+  $2
+augroup END
+endsnippet
+
+snippet augroup_mod_ft
+augroup mod_ft_$1
+  autocmd!
+  autocmd FileType $1 setlocal tabstop=2 softtabstop=2 shiftwidth=2
+augroup END
+endsnippet
