@@ -11,5 +11,4 @@ if has('termguicolors')
 end
 
 set background=dark
-colorscheme chk256
-"colorscheme ir_black
+colors CodeCandy
