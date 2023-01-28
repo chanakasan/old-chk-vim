@@ -11,4 +11,4 @@ if has('termguicolors')
 end
 
 set background=dark
-colors CodeCandy
+colors CandyCode
