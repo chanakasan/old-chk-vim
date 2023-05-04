@@ -18,7 +18,7 @@ syntax on
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set background=dark
 let g:onedark_termcolors=256
-colorscheme onedark
+colorscheme CandyCode
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Appearance
